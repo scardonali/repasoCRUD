@@ -4,12 +4,20 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-
+use app\Models\roles;
 class User extends Authenticatable
 {
+
+    public function users(){
+        $this->BelongsTo('roles'::class);
+    }
+
+
+
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -43,3 +51,4 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 }
+
